@@ -74,3 +74,14 @@ function love.keyreleased(key, isrepeat)
   end
 end
 
+function remap(old, new, key)
+  if old == nil and key ~= nil then
+    translate[new] = key
+  elseif old ~= nil then
+    translate[new] = translate[old]
+    translate[old] = nil
+  else
+    print("PROBLEM MAPPING " .. key .. " to " .. new)
+  end
+
+end
