@@ -77,11 +77,10 @@ end
 function remap(old, new, key)
   if old == nil and key ~= nil then
     translate[new] = key
-  elseif old ~= nil then
+  elseif old ~= nil and key == translate[old] then
     translate[new] = translate[old]
     translate[old] = nil
   else
-    print("PROBLEM MAPPING " .. key .. " to " .. new)
+    print(string.format("error in remap(%s, %s, %s)", old, new, key))
   end
-
 end
