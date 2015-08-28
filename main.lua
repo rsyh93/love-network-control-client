@@ -1,6 +1,7 @@
 local socket = require "socket"
 local images = {}
 local states = {}
+local buttons = {}
 local address, port = "69.143.246.139", 25564
 local pressed_array = {}
 local translate = {
@@ -23,15 +24,28 @@ local translate = {
 function love.load()
   sock = socket.udp()
   sock:setpeername(address, port)
-  images.controller = love.graphics.newImage("game-console-controller-outline-hi.png")
   print(address, port)
+
+
+  -- TODO this needs MUCH MORE WORK
+  for key in translate.keys do
+    buttons[translate[key]] = {
+      onclick = function()
+        remap()
+      end
+    }
+  end
 end
 
 function love.update()
 end
 
 function love.draw()
-  love.graphics.draw(images.controller, 0, 0)
+  -- TODO draw buttons
+end
+
+function love.mousepressed(x, y, button)
+  -- TODO Button onclicks
 end
 
 function love.keypressed(key, isrepeat)
